@@ -1,14 +1,14 @@
-import Popular from "../component/Popular";
-import Veggie from "../component/veggie";
+import { Link } from "react-router-dom";
 
-function Home() {
+export default function Home() {
   return (
-    <div>
-      <i className="fa-solid fa-utensils mb-3 w-full"> Yassine Food</i>
-      <Veggie />
-      <Popular />
+    <div className="home-container">
+      <h1>You got the travel plans, we got the travel vans.</h1>
+      <p>
+        Add adventure to your life by joining the #vanlife movement. Rent the
+        perfect van to make your perfect road trip.
+      </p>
+      <Link to="vans">Find your van</Link>
     </div>
   );
 }
-
-export default Home;

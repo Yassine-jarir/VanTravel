@@ -1,0 +1,5 @@
+<a href=""> </a> === <Link to=""><Link/>
+
+ 1-dynamic routes useparams
+2- nested routes
+3-      <Route path="*" element={<Error />} />
