@@ -1,16 +1,15 @@
-import { Link, useParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Footer from "./footer";
+import Header from "./Header";
 
-function PopularDetails() {
-  const params = useParams();
-  const userID = params.userID;
+export default function Layout() {
   return (
-    <div className="flex flex-col items-start">
-      <h1 className="text-3xl font-bold">PopularDetails {userID}</h1>
-      <button className="font-bold bg-yellow-400">
-        <Link to="/">home</Link>
-      </button>
+    <div className="site-wrapper">
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
     </div>
   );
 }
-
-export default PopularDetails;

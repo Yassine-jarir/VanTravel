@@ -3,3 +3,45 @@
  1-dynamic routes useparams
 2- nested routes
 3-      <Route path="*" element={<Error />} />
+
+
+111) use params
+222)nested route : when u want to keep displaying some
+UI on the page, but also want to display more.
+2.1/ parent route 
+2.2/ relative paths : 
+2.3/- index : kat3ni fach nmchi l path li parent element bghit 
+index ikoun tma
+2.4/ ==> / : kat3ni nta li kat7ded l path
+     ==> ila maderit / : kat3ni child lchi parent 
+2.5/  <Route path="/" element={<Header />}>
+          <Route index element={<Home />} />
+
+ila lpath='/' dir liya parent element o fl oultlet tle3 liya 
+index
+333)
+1. What is the primary reason to use a nested route?
+Whenever we have some shared UI between routes in our app.
+
+
+2. What is a "Layout Route"?
+It's the parent route of some nested routes that contains just
+the portion of the UI that will be shared. It will use an Outlet
+component.
+
+
+3. What does the <Outlet /> component do? When do you use it?
+We use it anytime we have a parent Route that's wrapping 
+children routes. It renders the matching child route's
+`element` prop given in its route definition
+
+
+4. What is an "Index Route"?
+It's the "default route" we want to render when the path
+of the parent route matches. It gives us a chance to render
+an element inside the parent's <Outlet /> at the same path
+as the parent route.
+
+444))) navlinks : 
+className={({ isActive }) => (isActive ? "navlinks-host" : null)}
+css : a.navlinks-host:...
