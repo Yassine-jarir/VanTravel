@@ -1,54 +1,11 @@
-// import { useEffect, useState } from "react";
-// import "../../server";
-// import { Link } from "react-router-dom";
-
-// const URL_API = "/api/vans";
-
-// function Vans() {
-//   let [listData, setlistData] = useState([]);
-
-//   useEffect(() => {
-//     fetch(URL_API)
-//       .then((res) => res.json())
-//       .then((data) => setlistData(data.vans));
-//   }, []);
-
-//   const vanElements = listData.map((van) => (
-//     <div
-//       key={van.id}
-//       className="van-tile text-center flex justify-center items-center"
-//     >
-//       <Link to={`/vans/${van.id}`}>
-//         <div className="w-64 m-auto block">
-//           <img src={van.imageUrl} />
-//         </div>
-//         <div className="van-info flex flex-col w-[350px]">
-//           <h2>{van.name}</h2>
-//           <span>
-//             ${van.price}
-//             <span>/day</span>
-//           </span>
-//         </div>
-//         <i className={`van-type ${van.type} selected`}>{van.type}</i>
-//       </Link>
-//     </div>
-//   ));
-
-//   return (
-//     <div className="flex flex-wrap w-[100%]">
-//       <h1>Explore our van options</h1>
-//       <div className="van-list  flex flex-wrap w-[100%]  gap-[24px] justify-center items-center h-[405px]">
-//         {vanElements}
-//       </div>
-//     </div>
-//   );
-// }
-// export default Vans;
-
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useSearchParams } from "react-router-dom";
 
 export default function Vans() {
+  const [searchparams, setsearchparams] = useSearchParams();
+  setsearchparams;
+  const para = searchparams.get("type");
+
   const [vans, setVans] = React.useState([]);
   React.useEffect(() => {
     fetch("/api/vans")
@@ -56,9 +13,12 @@ export default function Vans() {
       .then((data) => setVans(data.vans));
   }, []);
 
-  const vanElements = vans.map((van) => (
+  const filtervans = para
+    ? vans.filter((van) => van.type.toLowerCase() === para)
+    : vans;
+  const vanElements = filtervans.map((van) => (
     <div key={van.id} className="van-tile">
-      <Link to={`/vans/${van.id}`}>
+      <Link to={`${van.id}`}>
         <img src={van.imageUrl} />
         <div className="van-info">
           <h3>{van.name}</h3>
@@ -75,6 +35,33 @@ export default function Vans() {
   return (
     <div className="van-list-container">
       <h1>Explore our van options</h1>
+      <div className="flex gap-4">
+        <NavLink
+          to="?type=simple"
+          className={`van-type simple ${para === "simple" ? "selected" : null}`}
+        >
+          Simple
+        </NavLink>
+        <NavLink
+          to="?type=luxury"
+          className={`van-type luxury ${para === "luxury" ? "selected" : null}`}
+        >
+          luxury
+        </NavLink>
+        <NavLink
+          to="?type=rugged"
+          className={`van-type rugged ${
+            para === "rugged" ? "selected" : null
+          } `}
+        >
+          rugged
+        </NavLink>
+        {para ? (
+          <NavLink to="" className="van-type rugged">
+            clear
+          </NavLink>
+        ) : null}
+      </div>
       <div className="van-list">{vanElements}</div>
     </div>
   );
