@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 export default function Vans() {
   const [searchparams, setsearchparams] = useSearchParams();
@@ -18,7 +18,7 @@ export default function Vans() {
     : vans;
   const vanElements = filtervans.map((van) => (
     <div key={van.id} className="van-tile">
-      <Link to={`${van.id}`}>
+      <Link to={van.id} state={{ search: searchparams.toString(), type: para }}>
         <img src={van.imageUrl} />
         <div className="van-info">
           <h3>{van.name}</h3>
@@ -36,30 +36,30 @@ export default function Vans() {
     <div className="van-list-container">
       <h1>Explore our van options</h1>
       <div className="flex gap-4">
-        <NavLink
+        <Link
           to="?type=simple"
           className={`van-type simple ${para === "simple" ? "selected" : null}`}
         >
           Simple
-        </NavLink>
-        <NavLink
+        </Link>
+        <Link
           to="?type=luxury"
           className={`van-type luxury ${para === "luxury" ? "selected" : null}`}
         >
           luxury
-        </NavLink>
-        <NavLink
+        </Link>
+        <Link
           to="?type=rugged"
           className={`van-type rugged ${
             para === "rugged" ? "selected" : null
           } `}
         >
           rugged
-        </NavLink>
+        </Link>
         {para ? (
-          <NavLink to="" className="van-type rugged">
+          <Link to="" className="van-type rugged">
             clear
-          </NavLink>
+          </Link>
         ) : null}
       </div>
       <div className="van-list">{vanElements}</div>

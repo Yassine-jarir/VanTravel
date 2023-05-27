@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "../../server";
 
 function VansDetails() {
   const { id } = useParams();
 
   let [van, setvan] = useState(null);
+  const local = useLocation();
+  console.log(local);
+  console.log(local.state);
 
   const URL_API = `/api/vans/${id}`;
   useEffect(() => {
@@ -16,8 +19,15 @@ function VansDetails() {
 
   return (
     <div className="van-detail-container">
-      <Link to=".." relative="path" className="back-button">
-        &larr; <span>Back to all vans</span>
+      <Link
+        to={local.state ? `..?${local.state.search}` : ".."}
+        relative="path"
+        className="back-button"
+      >
+        &larr;{" "}
+        <span className="font-black">
+          Back to {local.state.type ? local.state.type : "all"} vans
+        </span>
       </Link>
       {van ? (
         <div className="van-detail md:w-[41%] md:flex m-auto text-center justify-center">

@@ -13,6 +13,7 @@ import VansHoastDetails from "./pages/Host/vanshoast/VansHoastDetails";
 import Details from "./pages/Host/vanshoast/Details";
 import Pricing from "./pages/Host/vanshoast/Pricing";
 import Photos from "./pages/Host/vanshoast/Photos";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route index element={<Vans />} />
             <Route path=":id" element={<VansDetails />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </>
