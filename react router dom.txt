@@ -58,3 +58,11 @@ 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
 3.1/ Begin with ? 
 E.G : /vans?key=value
 333)useSearchParams()
+444) happy path & sad path 
+handling the sad path errror 
+try{} happyt 
+catch{} saddd (errors) f
+4.1)) DATA LAYER APIs
+=======================================================
+loader and errors 
+======================================================

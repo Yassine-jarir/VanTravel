@@ -14,6 +14,7 @@ import Details from "./pages/Host/vanshoast/Details";
 import Pricing from "./pages/Host/vanshoast/Pricing";
 import Photos from "./pages/Host/vanshoast/Photos";
 import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-
+          <Route path="login" element={<Login />}></Route>
           <Route path="host" element={<HostLayaout />}>
             <Route index element={<Dashboard />} />
             <Route path="income" element={<Income />} />
@@ -39,6 +40,7 @@ function App() {
             <Route index element={<Vans />} />
             <Route path=":id" element={<VansDetails />} />
           </Route>
+          <Route path="login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

@@ -1,16 +1,28 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
-
+import getapis from "../../API/Api";
 export default function Vans() {
   const [searchparams, setsearchparams] = useSearchParams();
   setsearchparams;
   const para = searchparams.get("type");
 
   const [vans, setVans] = React.useState([]);
+  const [loading, setloading] = React.useState(false);
+  const [error, seterror] = React.useState(false);
+
   React.useEffect(() => {
-    fetch("/api/vans")
-      .then((res) => res.json())
-      .then((data) => setVans(data.vans));
+    async function validapi() {
+      setloading(true);
+      try {
+        const data = await getapis();
+        setVans(data);
+      } catch (error) {
+        seterror(error);
+      } finally {
+        setloading(false);
+      }
+    }
+    validapi();
   }, []);
 
   const filtervans = para
@@ -32,6 +44,12 @@ export default function Vans() {
     </div>
   ));
 
+  if (loading) {
+    return <h1 className="font-black text-3xl"> ...Loading</h1>;
+  }
+  if (error) {
+    return <h1 className="font-black text-3xl"> there is an error {error}</h1>;
+  }
   return (
     <div className="van-list-container">
       <h1>Explore our van options</h1>

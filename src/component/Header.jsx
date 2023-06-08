@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <header>
       <Link className="site-logo" to=".">
-        #VanLife
+        VanLife
       </Link>
       <nav>
         <NavLink
@@ -29,6 +29,12 @@ export default function Header() {
           style={({ isActive }) => (isActive ? activeStyles : null)}
         >
           Vans
+        </NavLink>
+        <NavLink
+          to="login"
+          style={({ isActive }) => (isActive ? activeStyles : null)}
+        >
+          <i className="fa-solid fa-user"></i>
         </NavLink>
       </nav>
     </header>
